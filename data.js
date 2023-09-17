@@ -1,5 +1,7 @@
 //importar modulo path de node
 const path = require('node:path'); 
+//importar 
+const fs = require('node:fs');
 
 
 
@@ -13,8 +15,14 @@ const getRouteAbsolute = (route) => {
     return path.resolve(__dirname, route);
 }
 
+//función que revisa si la ruta existe
+const existsTheRoute = (route) => {
+    return fs.existsSync(route);
+}
+
 
 
 module.exports = {theRouteIsAbsolute,
-    getRouteAbsolute
+    getRouteAbsolute,
+    existsTheRoute
 };

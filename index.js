@@ -1,26 +1,33 @@
-
 const data = require("./data");
 
 const mdLinks = (route) =>{
     return new Promise((resolve, reject) => {
         const isAbsolute = data.theRouteIsAbsolute(route);
-        console.log(isAbsolute);
         absoluteRoute = isAbsolute 
             ? route
             : data.getRouteAbsolute(route);
-        console.log('obtuve ruta absoluta'+absoluteRoute); 
-        const existsPath = data.existsTheRoute(absoluteRoute);
-        console.log('la ruta existe: '+existsPath);
-        
+        const routeExists = data.existsTheRoute(absoluteRoute);
+        if(!routeExists){
+            reject (new Error('la ruta no existe'));
+            return;
+        }
+        const isMarkdownTheFileExtension = data.isMarkdownTheFileExtension(route);
+        if(!isMarkdownTheFileExtension){
+            reject (new Error('la extensión del archivo no es de tipo MarkDown'));
+            return;
+        }
+        data.getDataFromFile(route)
+            .then(data => resolve(data))
+            .catch(error => reject(error));             
     });
 }
 
-mdLinks('/Users/patri/Desktop/proyectos laboratoria/proyecto4/mdlinks/DEV009-md-links')
+mdLinks('./filesMdLinks/mkdFile.mkd')
     .then(result => {
-    console.log(result);
-}).catch ((error) => {
-    console.log(error);
-});
+        console.log(result);
+    }).catch ((error) => {
+        console.log(error.message);
+    });
 
 
 

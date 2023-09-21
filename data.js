@@ -1,7 +1,7 @@
 //importar modulo path de node
 const path = require('node:path'); 
 //importar FS
-const { existsSync, link } = require('node:fs');
+const { existsSync } = require('node:fs');
 const { readFile } = require('node:fs/promises');
 
 //función verifica si la ruta es absoluta (devuelve true o false si la ruta es absoluta)
@@ -17,6 +17,13 @@ const getRouteAbsolute = (route) => {
 //función que revisa si la ruta existe
 const existsTheRoute = (route) => {
     return existsSync(route);
+}
+
+const toAbsolute = (route) => {
+    const isAbsolute = theRouteIsAbsolute(route);
+    return isAbsolute 
+        ? route
+        : data.getRouteAbsolute(route);
 }
 
 //función que revisa si la extension del archivo es de tipo markdown
@@ -41,8 +48,8 @@ const getAllData = (markdownLink, fileName) => {
     const linkWithoutFirstAndLast = markdownLink.substring(1, markdownLink.length - 1);
     const textAndLink = linkWithoutFirstAndLast.split('](');
     const text = textAndLink[0];
-    const link = textAndLink[1];
-    return { text, link, fileName }
+    const href = textAndLink[1];
+    return { href, text, fileName }
 }
 
 
@@ -51,5 +58,6 @@ module.exports = {theRouteIsAbsolute,
     existsTheRoute,
     isMarkdownTheFileExtension,
     getDataFromFile,
-    getAllData
+    getAllData,
+    toAbsolute
 };

@@ -19,7 +19,8 @@ describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
     });
 
     it('debería comprobar si la expresión regular valida los links con el texto esperado',() => {
-        expect('[milestones](https://docs.github.com/es/issues/using-labels-and-milestones-to-track-work/about-milestones)').toMatch(/\[([^\[]+)\](\(.*\))/gm);
+        expect('[milestones](https://docs.github.com/es/issues/using-labels-and-milestones-to-track-work/about-milestones)')
+        .toMatch(/\[([^\[]+)\](\(.*\))/gm);
     });
 
     it ('debería validar si la función getDataFromFile devuelve un array con los MdLinks encontrados en el archivo', () => {
@@ -38,6 +39,11 @@ describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
                 }
             ])
         );
+    });
+
+    it ('debería validar si la funcion regresa un objeto con las propiedades href, text y fileName', () => {
+        expect(data.getAllData('[Jest](https://jestjs.io/)','test.md'))
+        .toEqual({ href: 'https://jestjs.io/', text: 'Jest', fileName: 'test.md' });
     });
     
 });

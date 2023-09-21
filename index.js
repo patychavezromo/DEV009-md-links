@@ -2,10 +2,7 @@ const data = require("./data");
 
 const mdLinks = (route) =>{
     return new Promise((resolve, reject) => {
-        const isAbsolute = data.theRouteIsAbsolute(route);
-        absoluteRoute = isAbsolute 
-            ? route
-            : data.getRouteAbsolute(route);
+        const absoluteRoute = data.toAbsolute(route);
         const routeExists = data.existsTheRoute(absoluteRoute);
         if(!routeExists){
             reject (new Error('la ruta no existe'));
@@ -22,7 +19,7 @@ const mdLinks = (route) =>{
     });
 }
 
-mdLinks('./filesMdLinks/mkdFile.mkd')
+mdLinks('/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/mdFile.md')
     .then(result => {
         console.log(result);
     }).catch ((error) => {

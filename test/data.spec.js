@@ -1,13 +1,13 @@
 const data = require('../data');
 
 //ruta para prueba de los test
-const route = '/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/mdFile.md';
+const route = './filesMdLinks/mdFile.md';
 const route2 = '/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/test.md'
 
 describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
 
     it('debería validar si la ruta es absoluta', () => {        
-        expect(data.theRouteIsAbsolute(route)).toBe(true);
+        expect(data.theRouteIsAbsolute('/filesMdLinks/mdFile.md')).toBe(true);
     }); 
 
     it('debería validar si la ruta existe', () => {

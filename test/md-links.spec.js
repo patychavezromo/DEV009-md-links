@@ -1,6 +1,7 @@
 const {mdLinks} = require("../index.js");
 
 const route = '../filesMdTest/MdLinksDocTest.md';
+const route2FileWithExtPng = '../filesMdTest/MdLinksDocTest2.png';
 
 describe('mdLinks', () => {
 
@@ -26,6 +27,10 @@ describe('mdLinks', () => {
 
   it('Debería rechazar la promesa si la ruta no existe', () => {
     return expect(mdLinks('./the/route/dont/exists')).rejects.toThrow('la ruta no existe');
+  });
+
+  it('Debería rechazar la promesa si la extensión del archivo no es de tipo Markdown', () =>{
+    return expect(mdLinks(route2FileWithExtPng)).rejects.toThrow('la extensión del archivo no es de tipo MarkDown')
   });
 
 });

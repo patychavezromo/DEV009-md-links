@@ -23,7 +23,7 @@ const toAbsolute = (route) => {
     const isAbsolute = theRouteIsAbsolute(route);
     return isAbsolute 
         ? route
-        : data.getRouteAbsolute(route);
+        : getRouteAbsolute(route);
 }
 
 //función que revisa si la extension del archivo es de tipo markdown

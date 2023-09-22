@@ -13,7 +13,7 @@ const mdLinks = (route) =>{
             reject (new Error('la extensión del archivo no es de tipo MarkDown'));
             return;
         }
-        data.getDataFromFile(route)
+        return data.getDataFromFile(route)
             .then(data => resolve(data))
             .catch(error => reject(error));             
     });
@@ -27,9 +27,6 @@ mdLinks('/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-
     });
 
 
-
-
-
-// module.exports = () => {
-//    mdLinks
-// };
+module.exports = {
+   mdLinks
+};

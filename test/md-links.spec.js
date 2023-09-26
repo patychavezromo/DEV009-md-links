@@ -30,7 +30,7 @@ describe('mdLinks', () => {
   });
 
   it('Debería rechazar la promesa si la extensión del archivo no es de tipo Markdown', () =>{
-    return expect(mdLinks(route2FileWithExtPng)).rejects.toThrow('la extensión del archivo no es de tipo MarkDown')
+    return expect(mdLinks(route2FileWithExtPng)).rejects.toThrow('la extensión del archivo no es de tipo MarkDown');
   });
 
 });

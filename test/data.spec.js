@@ -45,8 +45,16 @@ describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
         expect(data.getAllData('[Jest](https://jestjs.io/)','test.md'))
         .toEqual({ href: 'https://jestjs.io/', text: 'Jest', fileName: 'test.md' });
     });
+
+    it('Debería validar si el archivo no contiene links', () =>{
+        return data.getDataFromFile('./filesMdTest/withOutLinks.md').catch(error => {
+            expect(error.message).toBe('El archivo no contiene links');
+        })
+    });
     
 });
+
+
 
   
   

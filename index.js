@@ -21,7 +21,7 @@ const mdLinks = (path, validate) =>{
 
 // mdLinks('/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/mdFile.md')
 
-mdLinks('./filesMdLinks/1link.md',true)
+mdLinks('./filesMdLinks/mkdFile.mkd',true)
     .then(result => {
         console.log(result);
     }).catch ((error) => {

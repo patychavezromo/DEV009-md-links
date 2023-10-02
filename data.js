@@ -5,7 +5,9 @@ const { existsSync } = require('node:fs');
 const { readFile } = require('node:fs/promises');
 //importar Axios
 const axios = require('axios');
-const { error } = require('node:console');
+const fs = require('node:fs');
+
+
 
 //función verifica si la ruta es absoluta (devuelve true o false si la ruta es absoluta)
 const theRouteIsAbsolute = (route) => {
@@ -16,6 +18,7 @@ const theRouteIsAbsolute = (route) => {
 const getRouteAbsolute = (route) => {
     return path.resolve(__dirname, route);
 }
+
 
 //función que revisa si la ruta existe
 const existsTheRoute = (route) => {
@@ -75,12 +78,54 @@ const getResponseToAxios = (link) => {
     return axios.get(link).then(response => {
         return response.status;
     }).catch((error) => {
-        console.log(error);
         return error.response.status;
     });
 }
 
+//función que revisa si el path es directorio
+const isDir = (route) => {
+    try{
+        const stats = fs.statSync(route);
+        return stats.isDirectory();
+    } catch (error) {
+        return false;
+    }
+};
+
+//función para transformar a ruta absoluta solo teniendo el nombre del archivo
+const getAbsolutePathWithBaseDirectory= (baseDirectory,route) => {
+    return path.resolve(baseDirectory, route);
+}
+
+
+//función que obtiene todos los archivos de un directorio
+const allNamesFiles = (route) => {
+    return fs.readdirSync(route); 
+}
+
+//funcion que recibe un array de nombre de los archivos y regresa un array con sus rutas absolutas (se pasa la ruta base del archivo donde se encontro el archivo para formar la ruta absoluta)
+const allRoutesOfFiles = (allNamesFiles, baseDirectory) =>{
+    return allNamesFiles.map((nameFile) =>{
+        return getAbsolutePathWithBaseDirectory(baseDirectory, nameFile);
+    });
+};
+
 // getResponseToAxios('https://es.wikipedia.org/wiki/Markdown/fytdfytdfytdfy');
+// const directory = isDir('./filesMdLinks');
+// if(directory){
+//     console.log('la ruta es de un directorio');
+// } else {
+//     console.log('no es directorio');
+// }
+
+// const files = allNamesFiles('./filesMdLinks');
+// console.log(files);
+
+// const allpathabsolute = allRoutesOfFiles(files, './filesMdLinks');
+
+// console.log(allpathabsolute);
+
+
 
 
 module.exports = {theRouteIsAbsolute,
@@ -89,5 +134,9 @@ module.exports = {theRouteIsAbsolute,
     isMarkdownTheFileExtension,
     getDataFromFile,
     getAllData,
-    toAbsolute
+    toAbsolute,
+    isDir,
+    getAbsolutePathWithBaseDirectory,
+    allRoutesOfFiles,
+    allNamesFiles
 };

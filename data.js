@@ -51,7 +51,7 @@ const getDataFromFile = (route, validate) => {
         const promises = markdownLinks.map(markdownLink => getAllData(markdownLink, fileName, validate));
         return Promise.all(promises)
     }).catch((error) => {
-        console.log(error.message);
+        console.log(error);
     });
 }
 
@@ -78,7 +78,7 @@ const getResponseToAxios = (link) => {
     return axios.get(link).then(response => {
         return response.status;
     }).catch((error) => {
-        return error.response.status;
+        return error.response?.status;
     });
 }
 
@@ -93,8 +93,8 @@ const isDir = (route) => {
 };
 
 //función para transformar a ruta absoluta solo teniendo el nombre del archivo
-const getAbsolutePathWithBaseDirectory= (baseDirectory,route) => {
-    return path.resolve(baseDirectory, route);
+const getAbsolutePathWithBaseDirectory= (baseDirectory, fileName) => {
+    return path.resolve(baseDirectory, fileName);
 }
 
 
@@ -105,10 +105,39 @@ const allNamesFiles = (route) => {
 
 //funcion que recibe un array de nombre de los archivos y regresa un array con sus rutas absolutas (se pasa la ruta base del archivo donde se encontro el archivo para formar la ruta absoluta)
 const allRoutesOfFiles = (allNamesFiles, baseDirectory) =>{
-    return allNamesFiles.map((nameFile) =>{
-        return getAbsolutePathWithBaseDirectory(baseDirectory, nameFile);
+    return allNamesFiles.map((fileName) =>{
+        return getAbsolutePathWithBaseDirectory(baseDirectory, fileName);
     });
 };
+
+
+const mdLinksWithDirectory = (dirPath, validate) => {
+    const filesNames = allNamesFiles(dirPath);
+    const allFilePaths = allRoutesOfFiles(filesNames, dirPath);
+    const allFilePromises = allFilePaths.map(filePath => mdLinksWithSingleFile(filePath, validate));
+    return Promise.allSettled(allFilePromises).then(results => {
+        return results.filter(result => result.status === 'fulfilled').map(result => result.value).flat();
+    })
+}
+
+const mdLinksWithSingleFile = (path, validate) =>{
+    return new Promise((resolve, reject) => {
+        const absoluteRoute = toAbsolute(path);
+        const routeExists = existsTheRoute(absoluteRoute);
+        if(!routeExists){
+            reject(new Error('la ruta no existe'));
+            return;
+        }
+        const isMarkdownTheFileExtensionVariable = isMarkdownTheFileExtension(path);
+        if(!isMarkdownTheFileExtensionVariable){
+            reject(new Error('la extensión del archivo no es de tipo MarkDown'));
+            return;
+        }
+        return getDataFromFile(path, validate)
+            .then(data => resolve(data))
+            .catch(error => reject(error));             
+    });
+}
 
 // getResponseToAxios('https://es.wikipedia.org/wiki/Markdown/fytdfytdfytdfy');
 // const directory = isDir('./filesMdLinks');
@@ -118,8 +147,10 @@ const allRoutesOfFiles = (allNamesFiles, baseDirectory) =>{
 //     console.log('no es directorio');
 // }
 
+
+
 // const files = allNamesFiles('./filesMdLinks');
-// console.log(files);
+// // console.log(files);
 
 // const allpathabsolute = allRoutesOfFiles(files, './filesMdLinks');
 
@@ -138,5 +169,7 @@ module.exports = {theRouteIsAbsolute,
     isDir,
     getAbsolutePathWithBaseDirectory,
     allRoutesOfFiles,
-    allNamesFiles
+    allNamesFiles,
+    mdLinksWithDirectory,
+    mdLinksWithSingleFile
 };

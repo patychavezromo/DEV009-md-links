@@ -2,7 +2,7 @@ ara comenzar este proyecto tendrás que hacer un fork y clonar este repositorio.
 
 * En este proyecto hay que adoptar las convenciones que los proyectos open
   source de software usan para hacer seguimiento. Vas a usar Github projects
-  con **[issues](https://docs.github.com/es/issues)** y
+  con **[12345678911234567891123456789112345678911234567891 issues](https://docs.github.com/es/issues)** y
   **[milestones](https://docs.github.com/es/issues/using-labels-and-milestones-to-track-work/about-milestones)**
   para priorizar y organizar el trabajo y hacer seguimiento de tu proceso.
   Dentro de cada milestone crearás los issues que

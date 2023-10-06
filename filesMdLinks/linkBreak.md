@@ -31,4 +31,4 @@ proyecto trabajando por hitos. A continuación, encontrarás los hitos que puede
 seguir:
 
 * [Hito 1](./docs/01-milestone.md)
-* [Hito 2]./docs/02-milestone.md
+* [Hito 2](./docs/02-milestone.md)

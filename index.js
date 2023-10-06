@@ -1,11 +1,10 @@
 const data = require("./data");
 
-const mdLinks = (path, validate=false) => {
+const mdLinks = (path, validate) => {
     if(data.isDir(path)) {
-        //console.log(data.mdLinksWithDirectory(path, validate));
         return data.mdLinksWithDirectory(path, validate);
     } else {
-        return data.mdLinksWithSingleFile(path, validate)
+        return data.mdLinksWithSingleFile(path, validate);
     }
 }
 

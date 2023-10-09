@@ -21,15 +21,31 @@ mdLinks(path, validate).then((data)=>{
                 'status OK: '+ objeto.statusOk);
             }
         }); 
-    } else if(stats){
+    } else if(!validate){
         console.log('\nTotal links: '+data.length);
         const nonRepeatingObjects= new Set();
         data.forEach((objeto) =>{
             nonRepeatingObjects.add(objeto.href);
         });
         const totalNonRepeatingObjects= nonRepeatingObjects.size;
-        console.log('Links únicos: '+totalNonRepeatingObjects)
-    } 
+        console.log('Links únicos: '+totalNonRepeatingObjects);
+    } else if(validate && stats){
+        console.log('\nTotal links: '+data.length);
+        const nonRepeatingObjects= new Set();
+        data.forEach((objeto) =>{
+            nonRepeatingObjects.add(objeto.href);
+        });
+        const totalNonRepeatingObjects= nonRepeatingObjects.size;
+        console.log('links únicos: '+totalNonRepeatingObjects);
+        let linksBroken=0;
+        data.forEach(objeto=>{
+            const includeStatus = objeto.status;
+            if(includeStatus && objeto.statusOk === 'fail'){
+                linksBroken ++;
+            }
+        });
+        console.log('Links rotos: '+linksBroken);
+    }
 });
 
 

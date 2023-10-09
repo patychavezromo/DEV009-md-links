@@ -25,6 +25,7 @@ const existsTheRoute = (route) => {
     return existsSync(route);
 }
 
+//función que puede recibir cualquier path y devuelve una ruta absoluta
 const toAbsolute = (route) => {
     const isAbsolute = theRouteIsAbsolute(route);
     return isAbsolute 
@@ -78,6 +79,11 @@ const getResponseToAxios = (link) => {
     return axios.get(link).then(response => {
         return response.status;
     }).catch((error) => {
+        // if(error.response) {
+        //     return error.response.status;
+        // } else {
+        //     return undefined;
+        // }
         return error.response?.status;
     });
 }

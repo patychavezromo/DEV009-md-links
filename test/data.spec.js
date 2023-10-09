@@ -1,14 +1,28 @@
 const data = require('../data');
 
 //ruta para prueba de los test
+const absoluteRoute='/filesMdLinks/mdFile.md';
+const relativeRoute='./filesMdLinks/mdFile.md';
 const route = './filesMdLinks/mdFile.md';
 const route2 = '/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/test.md'
 
 describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
 
     it('debería validar si la ruta es absoluta', () => {        
-        expect(data.theRouteIsAbsolute('/filesMdLinks/mdFile.md')).toBe(true);
+        expect(data.theRouteIsAbsolute(absoluteRoute)).toBe(true);
+    });
+    
+    it('debería validar que la ruta no es absoluta', () => {        
+        expect(data.theRouteIsAbsolute(relativeRoute)).not.toBe(true);
     }); 
+
+    it('debería validar que recibe una ruta relativa y devuelve una ruta absoluta', () => {        
+        return data.getRouteAbsolute(relativeRoute).then(data=>{
+            expect(data).toBe('/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/mdFile.md');
+        });           
+    }); 
+
+    
 
     it('debería validar si la ruta existe', () => {
         expect(data.existsTheRoute(route)).toBe(true);

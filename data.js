@@ -117,33 +117,33 @@ const allRoutesOfFiles = (allNamesFiles, baseDirectory) =>{
 };
 
 
-const mdLinksWithDirectory = (dirPath, validate) => {
-    const filesNames = allNamesFiles(dirPath);
-    const allFilePaths = allRoutesOfFiles(filesNames, dirPath);
-    const allFilePromises = allFilePaths.map(filePath => mdLinksWithSingleFile(filePath, validate));
-    return Promise.allSettled(allFilePromises).then(results => {
-        return results.filter(result => result.status === 'fulfilled').map(result => result.value).flat();
-    })
-}
+// const mdLinksWithDirectory = (dirPath, validate) => {
+//     const filesNames = allNamesFiles(dirPath);
+//     const allFilePaths = allRoutesOfFiles(filesNames, dirPath);
+//     const allFilePromises = allFilePaths.map(filePath => mdLinksWithSingleFile(filePath, validate));
+//     return Promise.allSettled(allFilePromises).then(results => {
+//         return results.filter(result => result.status === 'fulfilled').map(result => result.value).flat();
+//     })
+// }
 
-const mdLinksWithSingleFile = (path, validate) =>{
-    return new Promise((resolve, reject) => {
-        const absoluteRoute = toAbsolute(path);
-        const routeExists = existsTheRoute(absoluteRoute);
-        if(!routeExists){
-            reject(new Error('la ruta no existe'));
-            return;
-        }
-        const isMarkdownTheFileExtensionVariable = isMarkdownTheFileExtension(path);
-        if(!isMarkdownTheFileExtensionVariable){
-            reject(new Error('la extensión del archivo no es de tipo MarkDown'));
-            return;
-        }
-        return getDataFromFile(path, validate)
-            .then(data => resolve(data))
-            .catch(error => reject(error));             
-    });
-}
+// const mdLinksWithSingleFile = (path, validate) =>{
+//     return new Promise((resolve, reject) => {
+//         const absoluteRoute = toAbsolute(path);
+//         const routeExists = existsTheRoute(absoluteRoute);
+//         if(!routeExists){
+//             reject(new Error('la ruta no existe'));
+//             return;
+//         }
+//         const isMarkdownTheFileExtensionVariable = isMarkdownTheFileExtension(path);
+//         if(!isMarkdownTheFileExtensionVariable){
+//             reject(new Error('la extensión del archivo no es de tipo MarkDown'));
+//             return;
+//         }
+//         return getDataFromFile(path, validate)
+//             .then(data => resolve(data))
+//             .catch(error => reject(error));             
+//     });
+// }
 
 // getResponseToAxios('https://es.wikipedia.org/wiki/Markdown/fytdfytdfytdfy');
 // const directory = isDir('./filesMdLinks');
@@ -176,6 +176,5 @@ module.exports = {theRouteIsAbsolute,
     getAbsolutePathWithBaseDirectory,
     allRoutesOfFiles,
     allNamesFiles,
-    mdLinksWithDirectory,
-    mdLinksWithSingleFile
+    getResponseToAxios
 };

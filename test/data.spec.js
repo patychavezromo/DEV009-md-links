@@ -1,10 +1,17 @@
+const axios = require ('axios');
 const data = require('../data');
+const path = require('path');
+
 
 //ruta para prueba de los test
 const absoluteRoute='/filesMdLinks/mdFile.md';
 const relativeRoute='./filesMdLinks/mdFile.md';
+const routeWithOutLinks='./filesMdLinks/withOutLinks.md';
+// const status= './filesMdLinks/status.md';
 const route = './filesMdLinks/mdFile.md';
 const route2 = '/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/test.md'
+
+jest.mock('axios');
 
 describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
 
@@ -20,9 +27,48 @@ describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
         return data.getRouteAbsolute(relativeRoute).then(data=>{
             expect(data).toBe('/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/mdFile.md');
         });           
+    });    
+    
+    it('debería validar que devuelve un array vacio si no encuentran enlaces dentro del archivo', async () => {        
+        const result = await data.getDataFromFile(routeWithOutLinks);
+        expect(result).toEqual([]);
     }); 
 
-    
+    it('debería retornar objetos que encuentre con el status "ok" si el validate es true', async() => {        
+        axios.get.mockResolvedValue({status:200});
+        const result = await data.getAllData('[Arreglos](https://curriculum.laboratoria.la/es/topics/javascript/04-arrays)', 'status.md', true);
+        expect(axios.get).toHaveBeenCalledWith('https://curriculum.laboratoria.la/es/topics/javascript/04-arrays');
+        expect(result).toEqual({
+            href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+            text: 'Arreglos',
+            fileName: 'status.md',
+            status: 200,
+            statusOk: 'ok',
+          });
+    }); 
+
+    it('debería retornar objetos sin el estatus si el validate es false', async() => {
+        const result = await data.getAllData('[Arreglos](https://curriculum.laboratoria.la/es/topics/javascript/04-arrays)', 'status.md', false);
+        expect(result).toEqual({
+            href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+            text: 'Arreglos',
+            fileName: 'status.md'
+          });
+    });
+
+    it('debería retornar objetos que encuentre con el status "fail" si el validate es true', async() => {
+        axios.get.mockResolvedValue({status:404});
+        const result= await data.getAllData('[Arreglos](https://curriculum.laboratoria.la/es/topics/javascript/04-array)', 'status.md', true);
+        expect(axios.get).toHaveBeenCalledWith('https://curriculum.laboratoria.la/es/topics/javascript/04-array');
+        expect(result).toEqual({
+            href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-array',
+            text: 'Arreglos',
+            fileName: 'status.md',
+            status: 404,
+            statusOk: 'fail',
+        })
+    });
+
 
     it('debería validar si la ruta existe', () => {
         expect(data.existsTheRoute(route)).toBe(true);
@@ -64,6 +110,30 @@ describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
         return data.getDataFromFile('./filesMdTest/withOutLinks.md').catch(error => {
             expect(error.message).toBe('El archivo no contiene links');
         })
+    });
+
+    it('Debería retornar el estatus de la respuesta exitosa', async() =>{
+        const link = './filesMdLinks/status.md';
+        const expectedStatus = 200;
+        axios.get.mockResolvedValue({ status: expectedStatus });
+        const status = await data.getResponseToAxios(link);
+        expect(status).toBe(expectedStatus);       
+    });
+
+    it('Debería retornar el estatus de la respuesta de error', async() =>{
+        const link = './filesMdLinks/status.md';
+        const expectedErrorStatus  = 404;
+        axios.get.mockRejectedValue({ response: { status: expectedErrorStatus } });
+        const status = await data.getResponseToAxios(link);
+        expect(status).toBe(expectedErrorStatus);       
+    });
+
+    it('Debería retornar una ruta absoluta solo teniendo el nombre del archivo', () =>{
+        const baseDirectory = '/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/'; 
+        const fileName = '1link.md';
+        const expectedPath = path.resolve(baseDirectory, fileName);
+        const result = data.getAbsolutePathWithBaseDirectory(baseDirectory, fileName);
+        expect(result).toBe(expectedPath);
     });
     
 });

@@ -5,8 +5,8 @@ const route2FileWithExtPng = '../filesMdTest/MdLinksDocTest2.png';
 
 describe('mdLinks', () => {
 
-  it('Debería validar que la promesa devuelva un array de objetos con los links encontrados', () => {
-    return mdLinks(route).then(data => {
+  it('Debería validar que la promesa devuelva un array de objetos con los links encontrados, cuando validate es false', () => {
+    return mdLinks(route, false).then(data => {
       expect(data).toEqual(
         [
           {
@@ -19,6 +19,35 @@ describe('mdLinks', () => {
             href: './docs/01-milestone.md',
             text: 'Hito 1',
             fileName: 'MdLinksDocTest.md'
+          }
+        ]
+      )
+    }); 
+  });
+
+  it('Debería validar que la promesa devuelva un array de objetos con los links encontrados, cuando validate es true', () => {
+    return mdLinks(route, true).then(data => {
+      expect(data).toEqual(
+        [
+          {
+            href: 'https://docs.github.com/es/issues/using-labels-and-milestones-to-track-work/about-milestones',
+            text: 'milestones',
+            fileName: 'MdLinksDocTest.md',
+            status: 200,
+            statusOk: 'ok'
+          },
+          { href: 'https://jestjs.io/', 
+            text: 'Jest', 
+            fileName: 'MdLinksDocTest.md',
+            status: 200,
+            statusOk: 'ok'            
+          },
+          {
+            href: './docs/01-milestone.md',
+            text: 'Hito 1',
+            fileName: 'MdLinksDocTest.md',
+            status: undefined,
+            statusOk: "fail"
           }
         ]
       )

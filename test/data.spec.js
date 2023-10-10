@@ -1,7 +1,7 @@
 const axios = require ('axios');
 const data = require('../data');
 const path = require('path');
-const fs = require('fs');
+
 
 
 //ruta para prueba de los test
@@ -27,7 +27,7 @@ describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
         const expectedRoute='C:\\Users\\patri\\Desktop\\proyectos_laboratoria\\proyecto4\\mdlinks\\DEV009-md-links\\filesMdLinks\\mdFile.md';
         const result = data.getRouteAbsolute(relativeRoute);
         expect(result).toEqual(expectedRoute);          
-    });   // 
+    });   
     
     it('debería validar que devuelve un array vacio si no encuentran enlaces dentro del archivo', async () => {        
         const result = await data.getDataFromFile(routeWithOutLinks);

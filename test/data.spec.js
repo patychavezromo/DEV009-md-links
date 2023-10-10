@@ -1,13 +1,13 @@
 const axios = require ('axios');
 const data = require('../data');
 const path = require('path');
+const fs = require('fs');
 
 
 //ruta para prueba de los test
 const absoluteRoute='/filesMdLinks/mdFile.md';
 const relativeRoute='./filesMdLinks/mdFile.md';
 const routeWithOutLinks='./filesMdLinks/withOutLinks.md';
-// const status= './filesMdLinks/status.md';
 const route = './filesMdLinks/mdFile.md';
 const route2 = '/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/test.md'
 
@@ -23,11 +23,11 @@ describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
         expect(data.theRouteIsAbsolute(relativeRoute)).not.toBe(true);
     }); 
 
-    it('debería validar que recibe una ruta relativa y devuelve una ruta absoluta', () => {        
-        return data.getRouteAbsolute(relativeRoute).then(data=>{
-            expect(data).toBe('/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/mdFile.md');
-        });           
-    });    
+    it('debería validar que recibe una ruta relativa y devuelve una ruta absoluta', () => {
+        const expectedRoute='C:\\Users\\patri\\Desktop\\proyectos_laboratoria\\proyecto4\\mdlinks\\DEV009-md-links\\filesMdLinks\\mdFile.md';
+        const result = data.getRouteAbsolute(relativeRoute);
+        expect(result).toEqual(expectedRoute);          
+    });   // 
     
     it('debería validar que devuelve un array vacio si no encuentran enlaces dentro del archivo', async () => {        
         const result = await data.getDataFromFile(routeWithOutLinks);
@@ -134,6 +134,23 @@ describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
         const expectedPath = path.resolve(baseDirectory, fileName);
         const result = data.getAbsolutePathWithBaseDirectory(baseDirectory, fileName);
         expect(result).toBe(expectedPath);
+    });
+
+    it('Debería devolver rutas absolutas correctamente', () =>{
+        const baseDirectory = '/Users/patri/Desktop/proyectos_laboratoria/proyecto4/mdlinks/DEV009-md-links/filesMdLinks/';
+        const fileNames = ['1link.md', 'extFileIncorrect.js', 'linkBreak.md', 'mdFile.md','mkdFile.mkd','status.md','withOutLinks.md'];
+        const expectedRoutes = [
+            "C:\\Users\\patri\\Desktop\\proyectos_laboratoria\\proyecto4\\mdlinks\\DEV009-md-links\\filesMdLinks\\1link.md",
+           "C:\\Users\\patri\\Desktop\\proyectos_laboratoria\\proyecto4\\mdlinks\\DEV009-md-links\\filesMdLinks\\extFileIncorrect.js",
+           "C:\\Users\\patri\\Desktop\\proyectos_laboratoria\\proyecto4\\mdlinks\\DEV009-md-links\\filesMdLinks\\linkBreak.md",
+           "C:\\Users\\patri\\Desktop\\proyectos_laboratoria\\proyecto4\\mdlinks\\DEV009-md-links\\filesMdLinks\\mdFile.md",
+           "C:\\Users\\patri\\Desktop\\proyectos_laboratoria\\proyecto4\\mdlinks\\DEV009-md-links\\filesMdLinks\\mkdFile.mkd",
+           "C:\\Users\\patri\\Desktop\\proyectos_laboratoria\\proyecto4\\mdlinks\\DEV009-md-links\\filesMdLinks\\status.md",
+           "C:\\Users\\patri\\Desktop\\proyectos_laboratoria\\proyecto4\\mdlinks\\DEV009-md-links\\filesMdLinks\\withOutLinks.md",
+        ];
+
+        const result = data.allRoutesOfFiles(fileNames, baseDirectory);
+        expect(result).toEqual(expectedRoutes);        
     });
     
 });

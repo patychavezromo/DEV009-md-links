@@ -1,4 +1,4 @@
-const {mdLinks} = require("../index.js");
+const {mdLinks, mdLinksWithSingleFile} = require("../index.js");
 
 const route = '../filesMdTest/MdLinksDocTest.md';
 const routeDir = '../filesMdTest';
@@ -76,7 +76,7 @@ describe('mdLinks', () => {
         ]
       )
     }); 
-  });//
+  });
 
   it('Debería rechazar la promesa si la ruta no existe', () => {
     return expect(mdLinks('./the/route/dont/exists')).rejects.toThrow('la ruta no existe');
@@ -84,6 +84,17 @@ describe('mdLinks', () => {
 
   it('Debería rechazar la promesa si la extensión del archivo no es de tipo Markdown', () =>{
     return expect(mdLinks(route2FileWithExtPng)).rejects.toThrow('la extensión del archivo no es de tipo MarkDown');
+  });
+
+  it('Debería rechazar la promesa si ocurre un error', async() =>{
+    const path='invalid/path.md';
+    const validate = false;
+    try{
+      await mdLinksWithSingleFile(path, validate);
+    } catch(error){
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe('la ruta no existe');
+    }    
   });
 
 });

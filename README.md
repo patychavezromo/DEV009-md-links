@@ -16,62 +16,38 @@
 
 ## 1. Preámbulo
 
-[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado
-ligero muy popular entre developers. Es usado en
-muchísimas plataformas que manejan texto plano (GitHub, foros, blogs, etc.) y
-es muy común encontrar varios archivos en ese formato en cualquier tipo de
-repositorio (empezando por el tradicional `README.md`).
+Markdown es un lenguaje de marcado sencillo utilizado por la comunidad de desarrolladores web y escritores para formatear contenido en línea. Su popularidad se debe a su facilidad de uso, legibilidad, amplia compatibilidad, versatilidad y capacidad de funcionar en diferentes entornos. Markdown simplifica la creación de contenido en la web, lo que ahorra tiempo y esfuerzo al permitir a los usuarios centrarse en el contenido en lugar de la complejidad del formato.
 
-Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que
+Es muy común encontrar varios archivos en ese formato en cualquier tipo de
+repositorio (empezando por el tradicional README.md). Estos archivos Markdown normalmente contienen _links_ (vínculos/ligas) que
 muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de
 la información que se quiere compartir.
 
-Dentro de una comunidad de código abierto, nos han propuesto crear una
-herramienta usando [Node.js](https://nodejs.org/), que lea y analice archivos
-en formato `Markdown`, para verificar los links que contengan y reportar
-algunas estadísticas.
-
-![md-links](https://github.com/Laboratoria/bootcamp/assets/12631491/fc6bc380-7824-4fab-ab8f-7ab53cd9d0e4)
+![md-links](../img/mdlinks.png)
 
 ## 2. Resumen del proyecto
 
-En este proyecto desarrollarás una librería en Node.js que funcionará como
-herramienta para analizar links dentro de archivos Markdown. Esta librería
-estará disponible de dos formas: como un módulo publicado en GitHub, que las
-usuarias podrán instalar e importar en otros proyectos, y como una interfaz
-de línea de comandos (CLI) que permitirá utilizar la librería directamente
-desde el terminal.
+Md-Links es una biblioteca en Node.js que funciona como una herramienta para analizar enlaces dentro de archivos Markdown. Esta biblioteca está disponible como un módulo publicado en GitHub y como una interfaz de línea de comandos (CLI) que permite utilizar la biblioteca directamente desde la terminal.
 
-[Node.js](https://nodejs.org/es/) es un entorno de ejecución para JavaScript
-construido con el [motor de JavaScript V8 de Chrome](https://developers.google.com/v8/).
-Esto nos va a permitir ejecutar JavaScript en el entorno del sistema operativo,
-ya sea tu máquina o un servidor, lo cual nos abre las puertas para poder
-interactuar con el sistema en sí, archivos, redes, etc.
+Md-Links tiene la capacidad de leer archivos Markdown y extraer los enlaces encontrados en ellos. Además, proporciona información relevante sobre cada enlace, como el texto del enlace, el archivo en el que se encuentra y el estado del enlace, ya sea que esté funcionando o roto. También ofrece estadísticas, como la cantidad total de enlaces encontrados, la cantidad de enlaces no repetidos y la cantidad de enlaces rotos.
 
-En esta oportunidad nos alejamos un poco del navegador para construir una
-librería que interactua con el sistema archivos y un script que se ejecute
-usando Node.js. Aprenderemos cómo buscar y leer archivos, cómo hacer consultas
-de red, sobre procesos (`process.env`, `process.argv`, ...), etc.
+Con Md-Links, simplificamos la tarea de analizar y gestionar enlaces en archivos Markdown, lo que lo convierte en una herramienta útil para quienes trabajan con documentación y contenidos en este formato.
 
-Diseñar tu propia librería es una experiencia fundamental para cualquier
-desarrolladora porque que te obliga a pensar en la interfaz (API) de tus
-_módulos_ y cómo será usado por otras developers. Debes tener especial
-consideración en peculiaridades del lenguaje, convenciones y buenas prácticas.
-Al finalizar, podrás instalar esta librería utilizando NPM (Node Package
-Manager), que facilita la búsqueda e instalación de librerías de Node a
-través de su registro y también de GitHub. Una vez que hayas subido la
-librería a tu repositorio público, será accesible para otras developers.
+
+## 3. Funciones de Md-Links:
+
+Para 
+
+
+
 
 ## 3. Objetivos de aprendizaje
 
-
-Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en tu proyecto. Piensa en eso al decidir tu estrategia de trabajo.
-
 ### JavaScript
 
-- [ ] **Diferenciar entre tipos de datos primitivos y no primitivos**
+- [x] **Diferenciar entre tipos de datos primitivos y no primitivos**
 
-- [ ] **Arrays (arreglos)**
+- [x] **Arrays (arreglos)**
 
   <details><summary>Links</summary><p>
 
@@ -84,14 +60,14 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [Array.prototype.reduce() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 </p></details>
 
-- [ ] **Objetos (key, value)**
+- [x] **Objetos (key, value)**
 
   <details><summary>Links</summary><p>
 
   * [Objetos en JavaScript](https://curriculum.laboratoria.la/es/topics/javascript/05-objects/01-objects)
 </p></details>
 
-- [ ] **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
+- [x] **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
 
   <details><summary>Links</summary><p>
 
@@ -99,7 +75,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [Tomando decisiones en tu código — condicionales - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/conditionals)
 </p></details>
 
-- [ ] **Funciones (params, args, return)**
+- [x] **Funciones (params, args, return)**
 
   <details><summary>Links</summary><p>
 
@@ -117,23 +93,23 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [Recursión o Recursividad - Laboratoria Developers en Medium](https://medium.com/laboratoria-developers/recursi%C3%B3n-o-recursividad-ec8f1a359727)
 </p></details>
 
-- [ ] **Módulos de CommonJS**
+- [x] **Módulos de CommonJS**
 
   <details><summary>Links</summary><p>
 
   * [Modules: CommonJS modules - Node.js Docs](https://nodejs.org/docs/latest/api/modules.html)
 </p></details>
 
-- [ ] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
+- [x] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
 
-- [ ] **Callbacks**
+- [x] **Callbacks**
 
   <details><summary>Links</summary><p>
 
   * [Función Callback - MDN](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
 </p></details>
 
-- [ ] **Promesas**
+- [x] **Promesas**
 
   <details><summary>Links</summary><p>
 
@@ -141,21 +117,21 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [How to Write a JavaScript Promise - freecodecamp (en inglés)](https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/)
 </p></details>
 
-- [ ] **Pruebas unitarias (unit tests)**
+- [x] **Pruebas unitarias (unit tests)**
 
   <details><summary>Links</summary><p>
 
   * [Empezando con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/getting-started)
 </p></details>
 
-- [ ] **Pruebas asíncronas**
+- [x] **Pruebas asíncronas**
 
   <details><summary>Links</summary><p>
 
   * [Tests de código asincrónico con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/asynchronous)
 </p></details>
 
-- [ ] **Uso de mocks y espías**
+- [x] **Uso de mocks y espías**
 
   <details><summary>Links</summary><p>
 
@@ -166,39 +142,39 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 - [ ] **Uso de linter (ESLINT)**
 
-- [ ] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
+- [x] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
 
 ### Node.js
 
-- [ ] **Instalar y usar módulos con npm**
+- [x] **Instalar y usar módulos con npm**
 
   <details><summary>Links</summary><p>
 
   * [Sitio oficial de npm (en inglés)](https://www.npmjs.com/)
 </p></details>
 
-- [ ] **Configuración de package.json**
+- [x] **Configuración de package.json**
 
   <details><summary>Links</summary><p>
 
   * [package.json - Documentación oficial (en inglés)](https://docs.npmjs.com/files/package.json)
 </p></details>
 
-- [ ] **Configuración de npm-scripts**
+- [x] **Configuración de npm-scripts**
 
   <details><summary>Links</summary><p>
 
   * [scripts - Documentación oficial (en inglés)](https://docs.npmjs.com/misc/scripts)
 </p></details>
 
-- [ ] **process (env, argv, stdin-stdout-stderr, exit-code)**
+- [x] **process (env, argv, stdin-stdout-stderr, exit-code)**
 
   <details><summary>Links</summary><p>
 
   * [Process - Documentación oficial (en inglés)](https://nodejs.org/api/process.html)
 </p></details>
 
-- [ ] **File system (fs, path)**
+- [x] **File system (fs, path)**
 
   <details><summary>Links</summary><p>
 
@@ -208,21 +184,21 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 ### Control de Versiones (Git y GitHub)
 
-- [ ] **Git: Instalación y configuración**
+- [] **Git: Instalación y configuración**
 
-- [ ] **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
+- [x] **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
 
-- [ ] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
+- [x] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
 
-- [ ] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
+- [] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
 
-- [ ] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
+- [x] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
 
-- [ ] **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
+- [x] **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
 
 ### HTTP
 
-- [ ] **Consulta o petición (request) y respuesta (response).**
+- [x] **Consulta o petición (request) y respuesta (response).**
 
   <details><summary>Links</summary><p>
 
@@ -230,7 +206,7 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [Mensajes HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Messages)
 </p></details>
 
-- [ ] **Códigos de status de HTTP**
+- [x] **Códigos de status de HTTP**
 
   <details><summary>Links</summary><p>
 

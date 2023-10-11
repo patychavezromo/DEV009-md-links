@@ -23,7 +23,7 @@ repositorio (empezando por el tradicional README.md). Estos archivos Markdown no
 muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de
 la información que se quiere compartir.
 
-![md-links](../img/mdlinks.png)
+![md-links](./img/mdlinks.png)
 
 ## 2. Resumen del proyecto
 
@@ -36,7 +36,7 @@ Con Md-Links, simplificamos la tarea de analizar y gestionar enlaces en archivos
 
 ## 3. Funciones de Md-Links:
 
-Para 
+```Para```
 
 
 

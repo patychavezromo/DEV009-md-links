@@ -31,8 +31,7 @@ const mdLinksWithSingleFile = (path, validate) =>{
             return;
         }
         return data.getDataFromFile(path, validate)
-            .then(data => resolve(data))
-            .catch(error => reject(error));             
+            .then(data => resolve(data));             
     });
 }
 
@@ -47,5 +46,6 @@ const mdLinksWithSingleFile = (path, validate) =>{
 
 
 module.exports = {
-   mdLinks
+   mdLinks,
+   mdLinksWithSingleFile
 };

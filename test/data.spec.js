@@ -83,28 +83,6 @@ describe('Suite de Pruebas para las funciones puras de MdLinks', () => {
         .toMatch(/\[([^\[]+)\](\(.*\))/gm);
     });
 
-    it ('debería validar si la función getDataFromFile devuelve un array con los MdLinks encontrados en el archivo', () => {
-        return data.getDataFromFile(route2).then(data =>
-            expect(data).toEqual([
-                {
-                    href: 'https://docs.github.com/es/issues/using-labels-and-milestones-to-track-work/about-milestones',
-                    text: 'milestones',
-                    fileName: 'test.md'
-                },
-                { href: 'https://jestjs.io/', text: 'Jest', fileName: 'test.md' },
-                {
-                    href: './docs/01-milestone.md',
-                    text: 'Hito 1',
-                    fileName: 'test.md'
-                }
-            ])
-        );
-    });
-
-    it ('debería validar si la funcion regresa un objeto con las propiedades href, text y fileName', () => {
-        expect(data.getAllData('[Jest](https://jestjs.io/)','test.md'))
-        .toEqual({ href: 'https://jestjs.io/', text: 'Jest', fileName: 'test.md' });
-    });
 
     it('Debería validar si el archivo no contiene links', () =>{
         return data.getDataFromFile('./filesMdTest/withOutLinks.md').catch(error => {

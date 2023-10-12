@@ -39,6 +39,8 @@ Con Md-Links, simplificamos la tarea de analizar y gestionar enlaces en archivos
 ### Comando md-links
 Para comenzar a utilizar Md-Links es necesario escribir el comando ```md-links``` + escribir ```el path ```(ruta absoluta o relativa del proyecto donde se está trabajando, este path puede ser de un archivo o de un directorio) en caso de no localizar la ruta se mostrara un mensaje con el error.
 
+<pre> md-links './ruta/a/un/archivo/markdown.md' <code></code></pre>
+
 * comando md-links + path de un ```directorio específico```:
   Verifica que el archivo sea de tipo Markdown y muestra cada uno de los links encontrados dentro del archivo.
 
@@ -57,6 +59,9 @@ Como se muestra a continuación:
 ### Comandos opcionales
 
 También podemos utilizar los siguientes comandos opcionales (--validate y --stats) que nos proporcionan información sobre cada de uno de los enlaces encontrados.
+
+<pre> md-links './ruta/del/archivo' --validate <code></code></pre>
+<pre> md-links './ruta/del/archivo' --stats <code></code></pre>
 
 * ```--validate```:  
  al utilizar el comando ```md-links``` + path (indicar la ruta) + el comando ```--validate``` devolvera la información de todos los links encontrados y adicionalmente se agregara la informacion del estatus de respuesta positiva 'ok' o negativa 'fail'.
@@ -80,6 +85,8 @@ También podemos utilizar los siguientes comandos opcionales (--validate y --sta
 
 ### Combinación de comandos --validate y --stats
 
+<pre> md-links './ruta/del/archivo' --validate --stats <code></code></pre>
+
 Podemos combinar los comandos ```--validate``` y ```--stats``` para obtener una estadistica adicional relacionada al estatus del enlace (muestra los links rotos):
 
   ![combinacion de comando](./img/validateandstats.png)
@@ -87,9 +94,9 @@ Podemos combinar los comandos ```--validate``` y ```--stats``` para obtener una 
 ## 4. Instalación
 
 Podemos instalar ejecutando en la terminal el siguiente comando:
-<pre> instalacion <code>
+ 
 
-```npm install patychavezromo/DEV009-md-links```
+<pre>npm install patychavezromo/DEV009-md-links<code></code></pre>
 
 ## 5. Pruebas Unitarias
 Se realizarón las pruebas unitarias para validar los modulos de data.js e index.js:

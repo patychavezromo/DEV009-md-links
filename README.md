@@ -34,9 +34,9 @@ Md-Links tiene la capacidad de leer archivos Markdown y extraer los enlaces enco
 Con Md-Links, simplificamos la tarea de analizar y gestionar enlaces en archivos Markdown, lo que lo convierte en una herramienta útil para quienes trabajan con documentación y contenidos en este formato.
 
 
-## 3. Funciones de Md-Links:
+## 3. Como utilizar la libreria de Md-Links a tráves de la terminal:
 
-```Para```
+Para comenzar a utilizar Md-Links es necesario escribir el comando ```md-links``` + ```el path (ruta absoluta o relativa del proyecto donde se esta trabajando, este path puede ser de un archivo o de un directorio)``` 
 
 
 

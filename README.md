@@ -36,7 +36,29 @@ Con Md-Links, simplificamos la tarea de analizar y gestionar enlaces en archivos
 
 ## 3. Como utilizar la libreria de Md-Links a tráves de la terminal:
 
-Para comenzar a utilizar Md-Links es necesario escribir el comando ```md-links``` + ```el path (ruta absoluta o relativa del proyecto donde se esta trabajando, este path puede ser de un archivo o de un directorio)``` 
+### Comando md-links
+Para comenzar a utilizar Md-Links es necesario escribir el comando ```md-links``` + ```el path ```(ruta absoluta o relativa del proyecto donde se esta trabajando, este path puede ser de un archivo o de un directorio) en caso de no localizar la ruta se mostrara un mensaje con el error.
+
+* md-links + path de un ```directorio especifico```:
+  Verifica que el archivo sea de tipo Markdown y muestra cada uno de los links encontrados dentro del archivo.
+
+* md-links + path de un ```directorio```:
+  Busca todos los archivos de tipo Markdown que se localicen dentro del directorio y devuelve la información de cada uno de los links encontrados.
+
+En ambas alternativas de path devolvera información de los links encontrados correspondiente al:
+* link encontrado,
+* texto del link y,
+* ruta del archivo.
+
+Como se muestra a continuación:
+
+![md-links](./img/onlyMdLinks.png)
+
+### Comandos opcionales
+
+Tambien podemos utilizar los siguientes comandos opcionales (--validate y --stats) que nos proporcionan informacion sobre cada de uno de los enlaces encontrados.
+
+
 
 
 

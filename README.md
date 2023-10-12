@@ -88,7 +88,7 @@ Podemos combinar los comandos ```--validate``` y ```--stats``` para obtener una 
 
 Podemos instalar ejecutando en la terminal el siguiente comando:
 
-```npm install patychavezromo/DEV009-md-links```
+```npm install patychavezromo/DEV009-md-links js```
 
 ## 5. Pruebas Unitarias
 Se realizarón las pruebas unitarias para validar los modulos de data.js e index.js:

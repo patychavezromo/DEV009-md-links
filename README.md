@@ -4,13 +4,13 @@
 
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Consideraciones generales](#4-consideraciones-generales)
-* [5. Consideraciones técnicas](#5-consideraciones-técnicas)
-* [6. Hitos](#6-hitos)
-* [7. Hacker edition](#7-hacker-edition)
-* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
-* [9. Para pedir project feedback](#9-para-pedir-project-feedback)
+* [3. Como utilizar la libreria de Md-links a tráves de la terminal:](#3-como-utilizar-la-libreria-de-md-links-a-tráves-de-la-terminal)
+* [4. Intalación](#4-instalación)
+* [5. Pruebas unitarias](#5-pruebas-unitarias)
+* [6. Diagrama de flujo](#6-diagrama-de-flujo)
+* [7. Organización](#7-organización-del-proyecto)
+* [8. Objetivos de aprendizaje](#8-objetivos-de-aprendizaje)
+
 
 ***
 
@@ -23,7 +23,7 @@ repositorio (empezando por el tradicional README.md). Estos archivos Markdown no
 muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de
 la información que se quiere compartir.
 
-![md-links](./img/mdlinks.png)
+![imagenproyecto](./img/mdlinks.png)
 
 ## 2. Resumen del proyecto
 
@@ -37,15 +37,15 @@ Con Md-Links, simplificamos la tarea de analizar y gestionar enlaces en archivos
 ## 3. Como utilizar la libreria de Md-Links a tráves de la terminal:
 
 ### Comando md-links
-Para comenzar a utilizar Md-Links es necesario escribir el comando ```md-links``` + ```el path ```(ruta absoluta o relativa del proyecto donde se esta trabajando, este path puede ser de un archivo o de un directorio) en caso de no localizar la ruta se mostrara un mensaje con el error.
+Para comenzar a utilizar Md-Links es necesario escribir el comando ```md-links``` + escribir ```el path ```(ruta absoluta o relativa del proyecto donde se está trabajando, este path puede ser de un archivo o de un directorio) en caso de no localizar la ruta se mostrara un mensaje con el error.
 
-* md-links + path de un ```directorio especifico```:
+* comando md-links + path de un ```directorio específico```:
   Verifica que el archivo sea de tipo Markdown y muestra cada uno de los links encontrados dentro del archivo.
 
-* md-links + path de un ```directorio```:
+* comando md-links + path de un ```directorio```:
   Busca todos los archivos de tipo Markdown que se localicen dentro del directorio y devuelve la información de cada uno de los links encontrados.
 
-En ambas alternativas de path devolvera información de los links encontrados correspondiente al:
+En ambas alternativas de path devolverá información de los links encontrados correspondiente al:
 * link encontrado,
 * texto del link y,
 * ruta del archivo.
@@ -56,14 +56,52 @@ Como se muestra a continuación:
 
 ### Comandos opcionales
 
-Tambien podemos utilizar los siguientes comandos opcionales (--validate y --stats) que nos proporcionan informacion sobre cada de uno de los enlaces encontrados.
+También podemos utilizar los siguientes comandos opcionales (--validate y --stats) que nos proporcionan información sobre cada de uno de los enlaces encontrados.
+
+* ```--validate```:  
+ al utilizar el comando ```md-links``` + path (indicar la ruta) + el comando ```--validate``` devolvera la información de todos los links encontrados y adicionalmente se agregara la informacion del estatus de respuesta positiva 'ok' o negativa 'fail'.
+
+    #### Tipos de valor al consultar el estatus:
+
+    ```status 200``` significa que al acceder a ese enlace, el servidor web ha podido encontrar y entregar el recurso solicitado, ya que indica que el recurso solicitado está disponible y se ha entregado correctamente.
+
+    ```status 404``` recursos no encontrados.
+
+    ```status 500``` problemas en el servidor.
+
+    ![ejemplovalidate](./img/validate.png)
+
+* ```--stats```:  
+ al utilizar el comando ```md-links``` + path (indicar la ruta) + el comando ``` --stats ```, solo devolvera las estadisticas de los enlaces encontrados dentro del archivo o directorio solicitado (total de links, links no repetidos).
 
 
+  ![ejemplostats](./img/stats.png)
 
 
+### Combinación de comandos --validate y --stats
+
+Podemos combinar los comandos ```--validate``` y ```--stats``` para obtener una estadistica adicional relacionada al estatus del enlace (muestra los links rotos):
+
+  ![combinacion de comando](./img/validateandstats.png)
+
+## 4. Instalación
+
+Podemos instalar ejecutando en la terminal el siguiente comando:
+
+```npm install patychavezromo/DEV009-md-links```
+
+## 5. Pruebas Unitarias
+Se realizarón las pruebas unitarias para validar los modulos de data.js e index.js:
+
+![test](./img/test1.png)
+![test](./img/test2.png)
 
 
-## 3. Objetivos de aprendizaje
+## 6. Diagrama de Flujo
+
+## 7. Organización del proyecto
+
+## 8. Objetivos de aprendizaje
 
 ### JavaScript
 

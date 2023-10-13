@@ -8,8 +8,7 @@
 * [4. Intalación](#4-instalación)
 * [5. Pruebas unitarias](#5-pruebas-unitarias)
 * [6. Diagrama de flujo](#6-diagrama-de-flujo)
-* [7. Organización](#7-organización-del-proyecto)
-* [8. Objetivos de aprendizaje](#8-objetivos-de-aprendizaje)
+
 
 
 ***
